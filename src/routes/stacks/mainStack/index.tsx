@@ -2,7 +2,6 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   createBottomTabNavigator,
-  useBottomTabBarHeight,
 } from '@react-navigation/bottom-tabs';
 
 import {Routes} from '../../../shared/utils/routes';
@@ -16,16 +15,13 @@ import images from '../../../assets/images/images';
 
 import {useSelector} from 'react-redux';
 import HomeScreen from '../../../screens/homeScreen';
-import Location from '../../../screens/location';
 import Messages from '../../../screens/messages';
 import Profile from '../../../screens/profile';
 
 const Tab = createBottomTabNavigator();
 
-const renderTopBorder = () => {
-  return <View style={tabStyles.topBorStyes}></View>;
-};
-function MyTabs() {
+
+export function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -38,9 +34,9 @@ function MyTabs() {
         name={Routes.HOME}
         component={HomeScreen}
         options={{
-          tabBarLabel: ScreenTitle.HOME,
+          tabBarLabel: "HOME",
           tabBarLabelStyle: {
-            fontFamily: FONTS.MilliardMedium,
+            // fontFamily: FONTS.MilliardMedium,
             fontWeight: '600',
             fontSize: RF(10),
             paddingBottom: Platform.OS === 'android' && RF(5),
@@ -60,45 +56,19 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name={Routes.LOCATION}
-        component={Location}
-        options={{
-          tabBarLabel: ScreenTitle.LOCATION,
-          tabBarLabelStyle: {
-            fontFamily: FONTS.MilliardMedium,
-            fontWeight: '600',
-            fontSize: RF(10),
-            paddingBottom: Platform.OS === 'android' && RF(5),
-          },
-          tabBarIcon: ({focused, color, size}) => (
-            <View style={[tabStyles.tabBarItem]}>
-              {/*<View style={[tabStyles.topBorStyes, { backgroundColor: focused ? colors.APP_GOLD : "" }]}></View>*/}
-              <Image
-                source={images.exchange}
-                style={[
-                  tabStyles.iconStyle,
-                  {tintColor: focused ? colors.APP_GOLD : colors.LIGHT_GRAY},
-                ]}
-              />
-            </View>
-          ),
-        }}
-      />
-
-      <Tab.Screen
         name={Routes.MESSAGES}
         component={Messages}
         options={{
-          tabBarLabel: ScreenTitle.MESSAGES,
+          tabBarLabel: "MESSAGES",
           tabBarLabelStyle: {
-            fontFamily: FONTS.MilliardMedium,
+            // fontFamily: FONTS.MilliardMedium,
             fontWeight: '600',
             fontSize: RF(10),
             paddingBottom: Platform.OS === 'android' && RF(5),
           },
           tabBarIcon: ({focused, color, size}) => (
             <View style={[tabStyles.tabBarItem]}>
-              {/*<View style={[tabStyles.topBorStyes, { backgroundColor: focused ? colors.APP_GOLD : "" }]}></View>*/}
+              {/*<View style={[tabStyles.topBorStyes, { backgroundColor: focused ? colors.APP_GOLD: "" }]}></View>*/}
               <Image
                 source={images.message}
                 style={[
@@ -114,16 +84,16 @@ function MyTabs() {
         name={Routes.PROFILE}
         component={Profile}
         options={{
-          tabBarLabel: ScreenTitle.PROFILE,
+          tabBarLabel: "PROFILE",
           tabBarLabelStyle: {
-            fontFamily: FONTS.MilliardMedium,
+            // fontFamily: FONTS.MilliardMedium,
             fontWeight: '600',
             fontSize: RF(10),
             paddingBottom: Platform.OS === 'android' && RF(5),
           },
           tabBarIcon: ({focused, color, size}) => (
             <View style={[tabStyles.tabBarItem]}>
-              {/*<View style={[tabStyles.topBorStyes, { backgroundColor: focused ? colors.APP_GOLD : "" }]}></View>*/}
+              {/*<View style={[tabStyles.topBorStyes, { backgroundColor: focused ? colors.APP_GOLD: "" }]}></View>*/}
               <Image
                 source={images.profile}
                 style={[
@@ -134,7 +104,7 @@ function MyTabs() {
             </View>
           ),
         }}
-      />
+      /> 
     </Tab.Navigator>
   );
 }
@@ -146,7 +116,7 @@ const MainStack = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName={Routes.HOME}
+      initialRouteName={Routes.BOTTOM_TABS}
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={Routes.HOME} component={HomeScreen} />
       <Stack.Screen name={Routes.BOTTOM_TABS} component={MyTabs} />
