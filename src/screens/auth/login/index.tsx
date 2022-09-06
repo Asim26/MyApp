@@ -1,6 +1,6 @@
 //import liraries
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import Wrapper from '../../../shared/components/wrapper';
 
 // create a component
@@ -8,7 +8,17 @@ const Login = () => {
   return (
     <Wrapper>
       <View style={styles.container}>
-        <Text>Login</Text>
+        <Pressable
+          style={{backgroundColor: 'green', padding: 12, marginBottom: 15}}
+          onPress={() => {}}>
+          <Text style={{color: '#fff'}}>Login with Google</Text>
+        </Pressable>
+
+        <Pressable
+          style={{backgroundColor: 'blue', padding: 12}}
+          onPress={() => {}}>
+          <Text style={{color: '#fff'}}>Login with Facebook</Text>
+        </Pressable>
       </View>
     </Wrapper>
   );
@@ -20,7 +30,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
   },
 });
 
