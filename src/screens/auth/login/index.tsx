@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Platform, Text} from 'react-native';
+import {View, StyleSheet, Platform, Text, Alert} from 'react-native';
 import colors from '../../../assets/colors/colors';
 import images from '../../../assets/images/images';
 import Button from '../../../shared/components/button/button';
@@ -11,6 +11,9 @@ const Login = () => {
   const googleSignIn = () => {
     FirebaseHelper.googleSignIn((user: any) => {
       console.log('gmail login response...', user);
+      Alert.alert(`Welcome ${user?.name}`, '', [
+        {text: 'Thanks', onPress: () => {}},
+      ]);
     });
   };
   const facebookSignIn = () => {
@@ -18,8 +21,6 @@ const Login = () => {
       console.log('fb login response...', user);
     });
   };
-  const linkedInSignIn = () => {};
-
   return (
     <Wrapper>
       <View style={styles.container}>
@@ -82,24 +83,6 @@ const Login = () => {
             />
           </View>
         )}
-
-        <View style={{marginVertical: RF(5)}}>
-          <Button
-            title={'Continue with LinkedIn'}
-            bgColor={colors.FACEBOOK}
-            iconPlace={'leftCenter'}
-            titleStyle={{
-              color: colors.WHITE,
-              fontSize: RF(13),
-            }}
-            isIcon={true}
-            iconTintColor={colors.WHITE}
-            marginRightIcon={RF(4)}
-            icon={images.linkedin}
-            width={'90%'}
-            onPress={() => {}}
-          />
-        </View>
       </View>
     </Wrapper>
   );
