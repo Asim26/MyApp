@@ -4,6 +4,7 @@ import colors from '../../../assets/colors/colors';
 import images from '../../../assets/images/images';
 import Button from '../../../shared/components/button/button';
 import Wrapper from '../../../shared/components/wrapper';
+import {showToast} from '../../../shared/services/HelperService';
 import {RF} from '../../../shared/theme/responsive';
 import FirebaseHelper from '../../../shared/utils/FirebaseHelper';
 
@@ -11,14 +12,16 @@ const Login = () => {
   const googleSignIn = () => {
     FirebaseHelper.googleSignIn((user: any) => {
       console.log('gmail login response...', user);
-      Alert.alert(`Welcome ${user?.name}`, '', [
-        {text: 'Thanks', onPress: () => {}},
-      ]);
+      // Alert.alert(`Welcome ${user?.name}`, '', [
+      //   {text: 'Thanks', onPress: () => {}},
+      // ]);
+      showToast('Success', 'Gmail Social Login', true);
     });
   };
   const facebookSignIn = () => {
     FirebaseHelper.facebookSignIn((user: any) => {
       console.log('fb login response...', user);
+      showToast('Success', 'Facebook Social Login', true);
     });
   };
   return (
