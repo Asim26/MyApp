@@ -10,8 +10,16 @@ import FirebaseHelper from '../../../shared/utils/FirebaseHelper';
 const Login = () => {
   const googleSignIn = () => {
     FirebaseHelper.googleSignIn((user: any) => {
+      console.log('gmail login response...', user);
     });
   };
+  const facebookSignIn = () => {
+    FirebaseHelper.facebookSignIn((user: any) => {
+      console.log('fb login response...', user);
+    });
+  };
+  const linkedInSignIn = () => {};
+
   return (
     <Wrapper>
       <View style={styles.container}>
@@ -49,7 +57,9 @@ const Login = () => {
             marginRightIcon={RF(4)}
             icon={images.facebook}
             width={'90%'}
-            onPress={() => {}}
+            onPress={() => {
+              facebookSignIn();
+            }}
           />
         </View>
 
@@ -72,6 +82,24 @@ const Login = () => {
             />
           </View>
         )}
+
+        <View style={{marginVertical: RF(5)}}>
+          <Button
+            title={'Continue with LinkedIn'}
+            bgColor={colors.FACEBOOK}
+            iconPlace={'leftCenter'}
+            titleStyle={{
+              color: colors.WHITE,
+              fontSize: RF(13),
+            }}
+            isIcon={true}
+            iconTintColor={colors.WHITE}
+            marginRightIcon={RF(4)}
+            icon={images.linkedin}
+            width={'90%'}
+            onPress={() => {}}
+          />
+        </View>
       </View>
     </Wrapper>
   );

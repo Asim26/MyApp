@@ -5,6 +5,7 @@ const images = {
   eye: require('./eye.png'),
   eyeEnable: require('./eyeEnable.png'),
   facebook: require('./facebook.png'),
+  linkedin: require('./linkedin.png'),
   google: require('./google.png'),
   apple: require('./apple-logo.png'),
   checkBoxFilled: require('./checkboxfilled.png'),

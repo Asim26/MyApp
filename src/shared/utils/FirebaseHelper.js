@@ -3,15 +3,15 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-// import {Settings, Profile} from 'react-native-fbsdk-next';
-// import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk-next';
+import {Settings, Profile} from 'react-native-fbsdk-next';
+import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk-next';
 // import { appleAuth } from '@invertase/react-native-apple-authentication';
 import auth from '@react-native-firebase/auth';
 
 class firebaseHelper {
   constructor() {
     this.googleCofiguration();
-    // Settings.initializeSDK();
+    Settings.initializeSDK();
   }
 
   googleCofiguration() {
@@ -39,38 +39,38 @@ class firebaseHelper {
     }
   };
 
-  //   facebookSignIn = async callback => {
-  //     await LoginManager.logOut();
-  //     const result = await LoginManager.logInWithPermissions([
-  //       // 'public_profile',
-  //       // 'email', "user_friends"
-  //       'public_profile',
-  //       'email',
-  //       // 'user_friends'
-  //     ]);
-  //     if (result.isCancelled) {
-  //       throw 'User cancelled the login process';
-  //     }
-  //     const data = await AccessToken.getCurrentAccessToken();
-  //     if (!data) {
-  //       throw 'Something went wrong obtaining access token';
-  //     }
+  facebookSignIn = async callback => {
+    await LoginManager.logOut();
+    const result = await LoginManager.logInWithPermissions([
+      // 'public_profile',
+      // 'email', "user_friends"
+      'public_profile',
+      'email',
+      // 'user_friends'
+    ]);
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+    const data = await AccessToken.getCurrentAccessToken();
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
 
-  //     const facebookCredential = auth.FacebookAuthProvider.credential(
-  //       data.accessToken,
-  //     );
-  //     auth()
-  //       .signInWithCredential(facebookCredential)
-  //       .then(response => {
-  //         callback(response?.user);
-  //       });
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+    auth()
+      .signInWithCredential(facebookCredential)
+      .then(response => {
+        callback(response?.user);
+      });
 
-  //     //  Profile.getCurrentProfile(data.accessToken).then((res)=>{
-  //     //      console.log("prfile Data ====>>>",res);
-  //     //
-  //     //      callback(res);
-  //     // })
-  //   };
+    //  Profile.getCurrentProfile(data.accessToken).then((res)=>{
+    //      console.log("prfile Data ====>>>",res);
+    //
+    //      callback(res);
+    // })
+  };
 
   //  appleSignIn  = async(callback)=> {
   //   const appleAuthRequestResponse = await appleAuth.performRequest({

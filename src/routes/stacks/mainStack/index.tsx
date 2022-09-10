@@ -118,7 +118,7 @@ const MainStack = () => {
     <Stack.Navigator
       initialRouteName={Routes.BOTTOM_TABS}
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name={Routes.HOME} component={HomeScreen} />
+      {/* <Stack.Screen name={Routes.HOME} component={HomeScreen} /> */}
       <Stack.Screen name={Routes.BOTTOM_TABS} component={MyTabs} />
     </Stack.Navigator>
   );

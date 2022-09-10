@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Routes} from '../../../shared/utils/routes';
 import {useSelector} from 'react-redux';
 import Login from '../../../screens/auth/login';
+import HomeScreen from '../../../screens/homeScreen';
 const Stack = createNativeStackNavigator();
 
 const AuthStack = () => {
@@ -20,6 +21,7 @@ const AuthStack = () => {
         initialRouteName={Routes.LOGIN}
         screenOptions={{headerShown: false}}>
         <Stack.Screen name={Routes.LOGIN} component={Login} />
+        <Stack.Screen name={Routes.HOME} component={HomeScreen} />
       </Stack.Navigator>
     </>
   );
