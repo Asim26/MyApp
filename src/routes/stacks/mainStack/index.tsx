@@ -20,6 +20,7 @@ import Settings from '../../../screens/settings/settings';
 import NotificationSettings from '../../../screens/settings/notificationSettings';
 import NewPassword from '../../../screens/settings/createNewPassword';
 import PrivacyPolicy from '../../../screens/settings/privacyPolicy';
+import Conversation from '../../../screens/conversation';
 
 const Tab = createBottomTabNavigator();
 
@@ -153,6 +154,7 @@ const MainStack = () => {
       />
       <Stack.Screen name={Routes.NEW_PASSWORD} component={NewPassword} />
       <Stack.Screen name={Routes.PRIVACY_POLICY} component={PrivacyPolicy} />
+      <Stack.Screen name={Routes.CONVERSATION} component={Conversation} />
     </Stack.Navigator>
   );
 };

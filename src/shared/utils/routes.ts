@@ -12,4 +12,6 @@ export const Routes = {
   NOTIFICATION_SETTINGS: 'notificationSettings',
   NEW_PASSWORD: 'newPassword',
   PRIVACY_POLICY: 'privacyPolicy',
+  CONVERSATION: 'conversation',
+  NOTIFICATIONS:'notifications'
 };
