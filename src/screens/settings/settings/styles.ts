@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
-import colors from '../../assets/colors/colors';
-import {RF} from '../../shared/theme/responsive';
+import colors from '../../../assets/colors/colors';
+import {RF} from '../../../shared/theme/responsive';
 // import {FONTS} from '../../assets/fonts';
-import {GST} from '../../shared/theme/globalStyles';
+import {GST} from '../../../shared/theme/globalStyles';
 
 const styles = StyleSheet.create({
   container: {

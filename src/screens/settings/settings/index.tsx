@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
-import Wrapper from '../../shared/components/wrapper';
+import Wrapper from '../../../shared/components/wrapper';
 import {FlatList, View} from 'react-native';
 import styles from './styles';
-import images from '../../assets/images/images';
-import Header from '../../shared/components/header/header';
-import {ScreenTitle} from '../../shared/utils/ScreenTitle';
-import RowItem from '../../shared/components/rowItem';
-import {navigate, navigationRef} from '../../shared/services/NavService';
-import {Routes} from '../../shared/utils/routes';
+import images from '../../../assets/images/images';
+import Header from '../../../shared/components/header/header';
+import {ScreenTitle} from '../../../shared/utils/ScreenTitle';
+import RowItem from '../../../shared/components/rowItem';
+import {navigate, navigationRef} from '../../../shared/services/NavService';
+import {Routes} from '../../../shared/utils/routes';
 import {useDispatch} from 'react-redux';
-import {setAuthToken, setUser} from '../../shared/redux/reducers/userReducer';
+import {
+  setAuthToken,
+  setUser,
+} from '../../../shared/redux/reducers/userReducer';
 
 const Settings = () => {
   const [loading, setLoading] = useState(false);

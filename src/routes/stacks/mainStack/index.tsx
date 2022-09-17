@@ -15,7 +15,11 @@ import {useSelector} from 'react-redux';
 import HomeScreen from '../../../screens/homeScreen';
 import Messages from '../../../screens/messages';
 import Profile from '../../../screens/profile';
-import Settings from '../../../screens/settings';
+import Settings from '../../../screens/settings/settings';
+
+import NotificationSettings from '../../../screens/settings/notificationSettings';
+import NewPassword from '../../../screens/settings/createNewPassword';
+import PrivacyPolicy from '../../../screens/settings/privacyPolicy';
 
 const Tab = createBottomTabNavigator();
 
@@ -141,8 +145,14 @@ const MainStack = () => {
     <Stack.Navigator
       initialRouteName={Routes.BOTTOM_TABS}
       screenOptions={{headerShown: false}}>
-      {/* <Stack.Screen name={Routes.HOME} component={HomeScreen} /> */}
+      <Stack.Screen name={Routes.HOME} component={HomeScreen} />
       <Stack.Screen name={Routes.BOTTOM_TABS} component={MyTabs} />
+      <Stack.Screen
+        name={Routes.NOTIFICATION_SETTINGS}
+        component={NotificationSettings}
+      />
+      <Stack.Screen name={Routes.NEW_PASSWORD} component={NewPassword} />
+      <Stack.Screen name={Routes.PRIVACY_POLICY} component={PrivacyPolicy} />
     </Stack.Navigator>
   );
 };
