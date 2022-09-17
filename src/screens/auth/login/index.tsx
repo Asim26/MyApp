@@ -7,20 +7,26 @@ import Wrapper from '../../../shared/components/wrapper';
 import {showToast} from '../../../shared/services/HelperService';
 import {RF} from '../../../shared/theme/responsive';
 import FirebaseHelper from '../../../shared/utils/FirebaseHelper';
+import {useDispatch, useSelector} from 'react-redux';
+import {setUser} from '../../../shared/redux/reducers/userReducer';
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const googleSignIn = () => {
     FirebaseHelper.googleSignIn((user: any) => {
       console.log('gmail login response...', user);
       // Alert.alert(`Welcome ${user?.name}`, '', [
       //   {text: 'Thanks', onPress: () => {}},
       // ]);
+      dispatch(setUser(user));
       showToast('Success', 'Gmail Social Login', true);
     });
   };
   const facebookSignIn = () => {
     FirebaseHelper.facebookSignIn((user: any) => {
       console.log('fb login response...', user);
+      dispatch(setUser(user));
       showToast('Success', 'Facebook Social Login', true);
     });
   };

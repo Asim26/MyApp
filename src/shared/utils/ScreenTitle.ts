@@ -3,4 +3,5 @@ export const ScreenTitle = {
   LOCATION: 'Location',
   MESSAGES: 'Messages',
   PROFILE: 'Profile',
+  SETTINGS: 'Settings',
 };

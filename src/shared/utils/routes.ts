@@ -8,4 +8,8 @@ export const Routes = {
   MESSAGES: 'messages',
   PROFILE: 'proile',
   BOTTOM_TABS: 'bottomTabs',
+  SETTINGS: 'settings',
+  NOTIFICATION_SETTINGS: 'notificationSettings',
+  NEW_PASSWORD: 'newPassword',
+  PRIVACY_POLICY: 'privacyPolicy',
 };

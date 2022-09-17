@@ -1,8 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import {Routes} from '../../../shared/utils/routes';
 import {View, Image, Platform} from 'react-native';
@@ -17,9 +15,9 @@ import {useSelector} from 'react-redux';
 import HomeScreen from '../../../screens/homeScreen';
 import Messages from '../../../screens/messages';
 import Profile from '../../../screens/profile';
+import Settings from '../../../screens/settings';
 
 const Tab = createBottomTabNavigator();
-
 
 export function MyTabs() {
   return (
@@ -34,7 +32,7 @@ export function MyTabs() {
         name={Routes.HOME}
         component={HomeScreen}
         options={{
-          tabBarLabel: "HOME",
+          tabBarLabel: 'HOME',
           tabBarLabelStyle: {
             // fontFamily: FONTS.MilliardMedium,
             fontWeight: '600',
@@ -59,7 +57,7 @@ export function MyTabs() {
         name={Routes.MESSAGES}
         component={Messages}
         options={{
-          tabBarLabel: "MESSAGES",
+          tabBarLabel: 'MESSAGES',
           tabBarLabelStyle: {
             // fontFamily: FONTS.MilliardMedium,
             fontWeight: '600',
@@ -84,7 +82,7 @@ export function MyTabs() {
         name={Routes.PROFILE}
         component={Profile}
         options={{
-          tabBarLabel: "PROFILE",
+          tabBarLabel: 'PROFILE',
           tabBarLabelStyle: {
             // fontFamily: FONTS.MilliardMedium,
             fontWeight: '600',
@@ -104,7 +102,32 @@ export function MyTabs() {
             </View>
           ),
         }}
-      /> 
+      />
+      <Tab.Screen
+        name={Routes.SETTINGS}
+        component={Settings}
+        options={{
+          tabBarLabel: 'SETTINGS',
+          tabBarLabelStyle: {
+            // fontFamily: FONTS.MilliardMedium,
+            fontWeight: '600',
+            fontSize: RF(10),
+            paddingBottom: Platform.OS === 'android' && RF(5),
+          },
+          tabBarIcon: ({focused, color, size}) => (
+            <View style={[tabStyles.tabBarItem]}>
+              {/*<View style={[tabStyles.topBorStyes, { backgroundColor: focused ? colors.APP_GOLD: "" }]}></View>*/}
+              <Image
+                source={images.settings}
+                style={[
+                  tabStyles.iconStyle,
+                  {tintColor: focused ? colors.APP_GOLD : colors.LIGHT_GRAY},
+                ]}
+              />
+            </View>
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
