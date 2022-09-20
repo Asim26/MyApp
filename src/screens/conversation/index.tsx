@@ -12,9 +12,11 @@ import colors from '../../assets/colors/colors';
 import RBSheet from 'react-native-raw-bottom-sheet';
 // import {FONTS} from '../../assets/fonts';
 import Button from '../../shared/components/button/button';
-import {navigationRef} from "../../shared/services/NavService";
+import {navigationRef} from '../../shared/services/NavService';
 
-const Conversation = () => {
+const Conversation = (props: any) => {
+  const {route, navigation} = props;
+  const {id, name, userImage} = route?.params;
   const sheetRef = React.useRef();
 
   const openBottomSheet = () => {
@@ -26,7 +28,7 @@ const Conversation = () => {
   };
 
   const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [settings, setSettings] = useState([
     {
       id: 0,
@@ -76,7 +78,7 @@ const Conversation = () => {
   }, []);
 
   const onSend = useCallback((messages = []) => {
-    console.log("messages ====>>>",messages)
+    console.log('messages ====>>>', messages);
     setMessages(previousMessages =>
       GiftedChat.append(previousMessages, messages),
     );
@@ -113,31 +115,28 @@ const Conversation = () => {
   };
 
   const renderTime = props => {
-    return null
+    return null;
   };
 
   const sendMessage = () => {
     let msg = {
       createdAt: new Date(),
-      text:message,
+      text: message,
       user: {_id: 1},
       _id: `${new Date().getTime()}`,
-    }
-    setMessages(previousMessages =>
-        GiftedChat.append(previousMessages, msg),
-    )
-  }
+    };
+    setMessages(previousMessages => GiftedChat.append(previousMessages, msg));
+  };
 
-  const renderSend = (props) => {
-    console.log("props ===>>>",props);
+  const renderSend = props => {
+    console.log('props ===>>>', props);
     return (
       <>
-        <View
-            {...props}
-            style={{marginBottom: RF(10)}}>
+        <View {...props} style={{marginBottom: RF(10)}}>
           <TouchableOpacity
-          onPress={()=>{sendMessage()}}
-          >
+            onPress={() => {
+              sendMessage();
+            }}>
             <Image
               source={images.sendIcon}
               style={{width: RF(20), height: RF(20), marginRight: RF(15)}}
@@ -168,7 +167,6 @@ const Conversation = () => {
                 height: RF(45),
                 justifyContent: 'center',
                 alignItems: 'center',
-
               }}>
               <TouchableOpacity>
                 <Text
@@ -177,7 +175,7 @@ const Conversation = () => {
                     color: colors.RED,
                     // fontFamily: FONTS.Milliard,
                   }}>
-                    {"Delete Conversation"}
+                  {'Delete Conversation'}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -215,9 +213,11 @@ const Conversation = () => {
         <View style={styles.headerContainer}>
           <Header
             leftIconPath={images.arrowBack}
-            title={'Paityn Saris'}
-            titleLogoPath={images.userProfile}
-            onLeftIconPress={()=>{navigationRef.current.goBack()}}
+            title={name}
+            titleLogoPath={images.userImage}
+            onLeftIconPress={() => {
+              navigationRef.current.goBack();
+            }}
             titleLogosize={RF(20)}
             rightIconOnePath={images.moreOptions}
             rightIconSize={RF(20)}
@@ -237,7 +237,9 @@ const Conversation = () => {
             renderTime={renderTime}
             placeholder={'Write a message...'}
             renderSend={renderSend}
-            onInputTextChanged = {(value)=>{setMessage(value)}}
+            onInputTextChanged={value => {
+              setMessage(value);
+            }}
           />
         </View>
         <RBSheet

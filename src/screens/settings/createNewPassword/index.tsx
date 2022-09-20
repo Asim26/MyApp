@@ -149,7 +149,7 @@ const NewPassword = ({}) => {
                       <Button
                         title={'Update Password'}
                         onPress={() => {
-                          handleSubmit();
+                          // handleSubmit();
                         }}
                       />
                     </View>

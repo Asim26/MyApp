@@ -72,7 +72,11 @@ const Messages = () => {
       return (
         <MessageItem
           onPress={() => {
-            navigate(Routes.CONVERSATION);
+            navigate(Routes.CONVERSATION, {
+              id: item.id,
+              name: item.name,
+              userImage: item.userImage,
+            });
           }}
           name={item.name}
           message={item.message}

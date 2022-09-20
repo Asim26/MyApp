@@ -10,7 +10,7 @@ const Profile = () => {
     <Wrapper>
       <View style={styles.container}>
         <Image
-          source={{uri: user.photo}}
+          source={{uri: user?.profilePic}}
           style={{
             height: RFValue(100),
             width: RFValue(100),
@@ -19,8 +19,8 @@ const Profile = () => {
           }}
         />
         <Text>Profile</Text>
-        <Text>{user.name}</Text>
-        <Text>{user.email}</Text>
+        <Text>{user?.name}</Text>
+        <Text>{user?.email}</Text>
       </View>
     </Wrapper>
   );

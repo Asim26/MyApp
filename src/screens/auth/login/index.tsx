@@ -19,14 +19,26 @@ const Login = () => {
       // Alert.alert(`Welcome ${user?.name}`, '', [
       //   {text: 'Thanks', onPress: () => {}},
       // ]);
-      dispatch(setUser(user));
+      let userObj = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        profilePic: user.photo,
+      };
+      dispatch(setUser(userObj));
       showToast('Success', 'Gmail Social Login', true);
     });
   };
   const facebookSignIn = () => {
     FirebaseHelper.facebookSignIn((user: any) => {
       console.log('fb login response...', user);
-      dispatch(setUser(user));
+      let userObj = {
+        id: user.uid,
+        name: user.displayName,
+        email: '',
+        profilePic: user.photoURL,
+      };
+      dispatch(setUser(userObj));
       showToast('Success', 'Facebook Social Login', true);
     });
   };
