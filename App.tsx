@@ -13,10 +13,12 @@ import {
   hasLocationPermission,
 } from './src/shared/services/HelperService';
 import {setUserLocation} from './src/shared/redux/reducers/userReducer';
+import {initialConfig} from './src/shared/utils/config';
 
 const App = () => {
   useEffect(() => {
     hasLocationPermission();
+    initialConfig();
     getLocation(response => {
       let location = {
         latitude: response?.latitude,
