@@ -8,11 +8,23 @@ import {navigationRef} from './src/shared/services/NavService';
 import {persistor, store} from './src/shared/redux/store';
 import Toast from 'react-native-toast-message';
 import RootStack from './src/routes';
-import {hasLocationPermission} from './src/shared/services/HelperService';
+import {
+  getLocation,
+  hasLocationPermission,
+} from './src/shared/services/HelperService';
+import {setUserLocation} from './src/shared/redux/reducers/userReducer';
 
 const App = () => {
   useEffect(() => {
     hasLocationPermission();
+    getLocation(response => {
+      let location = {
+        latitude: response?.latitude,
+        longitude: response?.longitude,
+        address: response,
+      };
+      store.dispatch(setUserLocation(location));
+    });
   }, []);
 
   return (
