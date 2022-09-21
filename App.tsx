@@ -8,8 +8,13 @@ import {navigationRef} from './src/shared/services/NavService';
 import {persistor, store} from './src/shared/redux/store';
 import Toast from 'react-native-toast-message';
 import RootStack from './src/routes';
+import {hasLocationPermission} from './src/shared/services/HelperService';
 
 const App = () => {
+  useEffect(() => {
+    hasLocationPermission();
+  }, []);
+
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
