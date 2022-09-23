@@ -1,5 +1,12 @@
 import React, {Component, useEffect, useRef, useState} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import Wrapper from '../../shared/components/wrapper';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 import {RF} from '../../shared/theme/responsive';
@@ -12,6 +19,8 @@ import {
 } from '../../shared/services/HelperService';
 import images from '../../assets/images/images';
 import {useIsFocused} from '@react-navigation/native';
+import colors from '../../assets/colors/colors';
+import {GST} from '../../shared/theme/globalStyles';
 
 const HomeScreen = () => {
   const mapRef = useRef(null);
@@ -136,7 +145,7 @@ const HomeScreen = () => {
         <View
           style={{
             flex: 1,
-            backgroundColor: 'blue',
+            // backgroundColor: 'blue',
           }}>
           <MapView
             ref={mapRef}
@@ -175,6 +184,17 @@ const HomeScreen = () => {
               </Marker>
             </View>
           </MapView>
+          <TouchableOpacity
+            onPress={() => {
+              getCurrentLocation();
+              // Alert.alert('hello')
+            }}
+            style={styles.currentLocationnContainer}>
+            <Image
+              source={images.locationIcon}
+              style={styles.currentLocationImageStyle}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </Wrapper>
@@ -191,6 +211,23 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     ...StyleSheet.absoluteFillObject,
+  },
+  currentLocationnContainer: {
+    position: 'absolute',
+    right: RF(25),
+    bottom: RF(25),
+    height: RF(50),
+    width: RF(50),
+    borderRadius: RF(25),
+    backgroundColor: colors.WHITE,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...GST.shadowProp,
+  },
+  currentLocationImageStyle: {
+    height: '35%',
+    width: '35%',
+    resizeMode: 'contain',
   },
 });
 
