@@ -83,13 +83,12 @@ const images = {
   appLogo: require('./appLogo.png'),
   splash: require('./splash_gif.gif'),
   imagePlaceHolder: require('./productDetailsImag.png'),
-  africa:require("./africa.png"),
-  antarctica:require("./Antarctica.png"),
-  asia:require("./asia.png"),
-  northAmerica:require("./northAmerica.png"),
-  southAmerica:require("./southAmerica.png"),
-
-
+  africa: require('./africa.png'),
+  antarctica: require('./Antarctica.png'),
+  asia: require('./asia.png'),
+  northAmerica: require('./northAmerica.png'),
+  southAmerica: require('./southAmerica.png'),
+  currentLocation: require('./currentLocation.png'),
 };
 
 export default images;

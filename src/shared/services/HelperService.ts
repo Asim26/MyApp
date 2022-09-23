@@ -156,3 +156,9 @@ export const getLocation = async (callback: any) => {
     options,
   );
 };
+
+export const isObjectExist = object => {
+  if (object !== null && object !== undefined) {
+    return Object.keys(object).length !== 0;
+  }
+};
