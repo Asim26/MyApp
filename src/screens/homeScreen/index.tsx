@@ -44,7 +44,7 @@ const HomeScreen = () => {
   }, [focus]);
 
   const onRegionChange = (region: any) => {
-    getAddressOfUser(region?.latitude, region?.region?.longitude, address => {
+    getAddressOfUser(region?.latitude, region?.longitude, address => {
       console.log('getAddressOfUser ==onRegionChange===>>>', address);
 
       setSearch(address?.address);
@@ -92,20 +92,8 @@ const HomeScreen = () => {
 
   return (
     <Wrapper noPaddingBottom>
-      <View style={styles.container}>
-        <View
-          style={{
-            position: 'absolute',
-            top: RF(20),
-            height: RF(400),
-            width: '100%',
-            paddingHorizontal: RF(14),
-            // justifyContent: 'space-around',
-            // backgroundColor:'green',
-            backgroundColor: 'transparent',
-            zIndex: 1,
-            // borderWidth: 1,
-          }}>
+      <View style={styles.mainContainer}>
+        <View style={styles.autoCompleteContainer}>
           <GooglePlacesAutocomplete
             placeholder="Search"
             fetchDetails={true}
@@ -142,11 +130,7 @@ const HomeScreen = () => {
             }}
           />
         </View>
-        <View
-          style={{
-            flex: 1,
-            // backgroundColor: 'blue',
-          }}>
+        <View style={styles.mapContainer}>
           <MapView
             ref={mapRef}
             style={styles.map}
@@ -160,7 +144,10 @@ const HomeScreen = () => {
             }}
             onMapReady={() => {
               mapRef?.current?.animateToRegion(region);
-            }}>
+            }}
+            // mapType="satellite"
+            // followsUserLocation={true}
+            zoomEnabled={true}>
             <View>
               <Marker
                 // key={index}
@@ -173,21 +160,13 @@ const HomeScreen = () => {
                     ? location.longitude
                     : region?.longitude,
                 }}>
-                <Image
-                  source={images.mapPin}
-                  style={{
-                    height: RF(30),
-                    width: RF(30),
-                    resizeMode: 'contain',
-                  }}
-                />
+                <Image source={images.mapPin} style={styles.marker} />
               </Marker>
             </View>
           </MapView>
           <TouchableOpacity
             onPress={() => {
               getCurrentLocation();
-              // Alert.alert('hello')
             }}
             style={styles.currentLocationnContainer}>
             <Image
@@ -202,15 +181,36 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1,
     // borderWidth: 1,
     // justifyContent: 'center',
+  },
+  autoCompleteContainer: {
+    position: 'absolute',
+    top: RF(20),
+    height: RF(400),
+    width: '100%',
+    paddingHorizontal: RF(14),
+    // justifyContent: 'space-around',
+    // backgroundColor:'green',
+    backgroundColor: 'transparent',
+    zIndex: 1,
+    // borderWidth: 1,
+  },
+  mapContainer: {
+    flex: 1,
+    // backgroundColor: 'blue',
   },
   map: {
     height: '100%',
     width: '100%',
     ...StyleSheet.absoluteFillObject,
+  },
+  marker: {
+    height: RF(30),
+    width: RF(30),
+    resizeMode: 'contain',
   },
   currentLocationnContainer: {
     position: 'absolute',

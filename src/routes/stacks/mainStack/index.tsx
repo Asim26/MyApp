@@ -27,6 +27,9 @@ const Tab = createBottomTabNavigator();
 export function MyTabs() {
   return (
     <Tab.Navigator
+      tabBarOptions={{
+        keyboardHidesTabBar: true,
+      }}
       screenOptions={{
         headerShown: false,
         tabBarStyle: {backgroundColor: colors.WHITE, borderTopWidth: 0},
